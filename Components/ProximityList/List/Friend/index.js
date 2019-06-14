@@ -13,12 +13,10 @@ const { center, fillContainer } = BaseStyles;
 
 class Friend extends Component {
 
-	shouldComponentUpdate({ distance, name, index, length, image }) {
+	shouldComponentUpdate({ distance, name, image }) {
 		const curProps = this.props;
 		if(distance !== curProps.distance) return true;
 		else if(name !== curProps.name) return true;
-		else if(index !== curProps.index) return true;
-		else if(length !== curProps.length) return true;
 		else if(image !== curProps.image) return true;
 		return false;
 	}
@@ -26,9 +24,7 @@ class Friend extends Component {
 	render() {
 		const { distance, name, index, length, listItemInfoWidth, image } = this.props;
 		return (
-			<GestureItem
-				index={index}
-				length={length}>
+			<GestureItem index={index}>
 				<View style={[fillContainer, center, Styles.friendCenter]}>
 					<Avatar image={image} />
 					<View style={[ListItemStyles.infoMargin, { width: listItemInfoWidth }]}>
