@@ -13,12 +13,14 @@ export default StyleSheet.create({
 		justifyContent: 'flex-end',
 		zIndex: 2,
 	},
+	paralax: {
+		width: '100%', 
+		overflow: 'hidden'
+	},
 	mapWrapper: {
-		width: '100%',
 		backgroundColor: '#F3F8F8',
 		borderBottomLeftRadius: 20,
 		borderBottomRightRadius: 20,
-		overflow: 'hidden',
 		zIndex: 2,
 	},
 	mapTab: {

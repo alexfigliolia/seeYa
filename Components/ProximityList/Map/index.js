@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Animated, View, Image, PanResponder, LayoutAnimation } from 'react-native';
+import { Animated, View, PanResponder, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
 import MapView from './Mapview';
-import Down from '../../../public/down-white.png';
+import PullTab from './PullTab';
 import Styles from './Styles';
 import BaseStyles from '../../Base/Styles';
 
@@ -29,7 +29,7 @@ class MapContainer extends Component {
       },
       update: { type: 'linear' },
     }
-    const { headerHeight, mapHeight, is5 } = this.props;
+    const { headerHeight, mapHeight } = this.props;
     const startingHeight = headerHeight + mapHeight;
     this.startY = 0;
     this.distanceTraveled = 0;
@@ -37,7 +37,7 @@ class MapContainer extends Component {
     this.currentHeight = startingHeight;
     this.halfMapHeight = mapHeight/2;
     this.negativeMapHeight = -mapHeight;
-    this.arrowDims = is5 ? 35 : 40;
+    this.containerStyle = { height: mapHeight };
     this.state = { toggled: false };
     this.onTouchStart = this.onTouchStart.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
@@ -109,48 +109,63 @@ class MapContainer extends Component {
     if(setMap) this.map.setNativeProps({ height: height, transform: [{ translateY: 0 }] });
   }
 
+  getTranslation(anim, input, output) {
+    return { transform: [
+      { translateY: anim.interpolate({
+        inputRange: [0, input],
+        outputRange: [0, output],
+        extrapolate: 'clamp',
+      })}
+    ]};
+  }
+
+  getFade(anim, input) {
+    return {
+      opacity: anim.interpolate({
+        inputRange: [0, input/2],
+        outputRange: [1, 0],
+        extrapolate: 'clamp'
+      })
+    }
+  }
+
   render() {
     const { mapHeight, anim } = this.props;
     const { toggled } = this.state;
     return (
       <Animated.View 
         ref={c => this.container = c}
-        style={[BaseStyles.center, Styles.map, { 
-          transform: [
-            { translateY: anim.interpolate({
-              inputRange: [0, mapHeight],
-              outputRange: [0, this.negativeMapHeight],
-              extrapolate: 'clamp',
-            })}
-          ],
-          height: mapHeight
-        }]}>
-      	<View 
-          ref={c => this.map = c}
-          style={[Styles.mapWrapper, { height: mapHeight }]}>
-          <MapView /> 
+        style={[
+          BaseStyles.center, 
+          Styles.map, 
+          this.getTranslation(anim, mapHeight, this.negativeMapHeight), 
+          this.containerStyle
+        ]}>
+      	<View
+          ref={c => this.map = c} 
+          style={[Styles.paralax, this.containerStyle]}>
+           <Animated.View 
+            style={[
+              Styles.mapWrapper, 
+              Styles.paralax,
+              BaseStyles.fillContainer,
+              this.getTranslation(anim, mapHeight, mapHeight)
+            ]}>
+            <MapView /> 
+          </Animated.View> 
         </View>
-        <View 
-          style={[BaseStyles.center, Styles.mapTab, { 
-            height: toggled ? 60 : 40
-          }]}
-          {...this.panResponder.panHandlers}>
-          <Image 
-            source={Down}
-            style={{
-              height: this.arrowDims, 
-              width: this.arrowDims,
-              transform: [{ rotate: toggled ? '180deg' : '0deg' }]
-            }} />
-        </View>
+        <PullTab 
+          panHandlers={this.panResponder.panHandlers}
+          toggled={toggled}
+          animation={this.getFade(anim, mapHeight)} />
       </Animated.View>
     );
   }
 }
 
 const mSTP = ({ Dimensions }) => {
-  const { bodyHeight, headerHeight, mapHeight, is5 } = Dimensions;
-  return { height: bodyHeight, headerHeight, mapHeight, is5 };
+  const { bodyHeight, headerHeight, mapHeight } = Dimensions;
+  return { height: bodyHeight, headerHeight, mapHeight };
 }
 
 export default connect(mSTP)(MapContainer);
