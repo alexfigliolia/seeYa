@@ -13,7 +13,7 @@ class Item extends Component {
     super(props);
     this.interval = null;
     this.state = { locations: [0, 1] };
-    this.animator = new Animated.Value(0);
+    this.anim = new Animated.Value(0);
     this.colors = ['#DEECF0', '#F0F4F4'];
     this.start = {x: 0, y: 0};
     this.end = {x: 1, y: 0};
@@ -54,32 +54,30 @@ class Item extends Component {
   }
 
   leave() {
-  	const { index, length } = this.props;
-  	Animated.timing(this.animator, {
+  	const { index, length, showList } = this.props;
+  	Animated.timing(this.anim, {
 			toValue: 1, 
 			duration: 500, 
 			delay: ((length - 1) - index) * 150, 
 			useNativeDriver: true,
 			easing: Easing.bezier(0.55, 0.085, 0.68, 0.53)
 		}).start(() => {
-			if(index === 0) this.props.showList();
+			if(index === 0) showList();
 		});
   }
 
   render() {
-  	const { listItemWidth, listItemInfoWidth, index, length } = this.props;
+  	const { listItemWidth, listItemInfoWidth } = this.props;
   	const { locations } = this.state;
     return (
       <Animated.View style={[center, ListItemStyles.listItem, {
 				width: listItemWidth,
-				marginTop: index === 0 ? 10 : 5,
-				marginBottom: index === length - 1 ? 10 : 5,
-				opacity: this.animator.interpolate({
+				opacity: this.anim.interpolate({
 					inputRange: [0, 1],
 					outputRange: [1, 0]
 				}),
 				transform: [
-					{ translateY: this.animator.interpolate({
+					{ translateY: this.anim.interpolate({
 						inputRange: [0, 1],
 						outputRange: [0, 100]
 					})}

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import Item from './Item';
 import Styles from '../Styles';
 import BaseStyles from '../../../Base/Styles';
-const { center, fillContainer } = BaseStyles;
 
 export default class Skeleton extends Component {
 
@@ -16,7 +15,10 @@ export default class Skeleton extends Component {
   	const items = [];
   	for(let i = 0; i < numChildren; i++) items.push(i);
     return (
-      <ScrollView style={fillContainer}>
+      <ScrollView style={[
+        BaseStyles.fillContainer, 
+        Styles.listSpacing
+      ]}>
         {
           items.map((el, i) => {
             return (
