@@ -35,7 +35,7 @@ export default StyleSheet.create({
 		position: 'absolute',
 		left: 0,
 		width: '33.33333%',
-		height: 1,
+		height: StyleSheet.hairlineWidth,
 		zIndex: 3
 	},
 	point: {
