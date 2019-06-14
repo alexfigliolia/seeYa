@@ -10,8 +10,8 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 class List extends PureComponent {
   constructor(props) {
     super(props);
-    const { height, mapHeight, searchResults } = this.props;
-    this.length = searchResults.length;
+    const { height, mapHeight, isX } = this.props;
+    this.height = isX ? { height } : {};
     this.listHeight = height - mapHeight;
     this.state = { refreshing: false, hasFriends: false };
     this.refresh = this.refresh.bind(this);
@@ -22,16 +22,11 @@ class List extends PureComponent {
     this.showList = this.showList.bind(this);
   }
 
-  UNSAFE_componentWillReceiveProps({ searchResults: { length }}) {
-    if(length !== this.props.searchResults.length) this.length = length;
-  }
-
   renderItem({ item, index }) {
     return (
       <Friend 
         index={index}
-        {...item}
-        length={this.length} />
+        {...item} />
     );
   }
 
@@ -60,18 +55,23 @@ class List extends PureComponent {
   }
 
   render() {
-    const { searchResults, anim } = this.props;
+    const { searchResults, anim, mapHeight } = this.props;
     const { hasFriends, refreshing } = this.state;
     return hasFriends ? 
       <AnimatedFlatList
         data={searchResults}
-        style={[BaseStyles.fillContainer, Styles.list]}
+        style={[
+          BaseStyles.fillContainer, 
+          Styles.list, 
+          this.height,
+          Styles.listSpacing
+        ]}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
         getItemLayout={this.getItemLayout}
         initialNumToRender={this.initialNumToRender()}
         initialScrollIndex={0}
-        removeClippedSubviews={this.length > 20}
+        removeClippedSubviews={searchResults.length > 20}
         keyboardShouldPersistTaps='handled'
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: anim}}}],
@@ -95,9 +95,9 @@ class List extends PureComponent {
 }
 
 const mSTP = ({ Proximity, Dimensions }) => {
-  const { bodyHeight, mapHeight } = Dimensions;
+  const { bodyHeight, mapHeight, isX } = Dimensions;
   const { searchResults } = Proximity;
-  return { height: bodyHeight, mapHeight, searchResults };
+  return { height: bodyHeight, mapHeight, searchResults, isX };
 }
 
 export default connect(mSTP)(List);

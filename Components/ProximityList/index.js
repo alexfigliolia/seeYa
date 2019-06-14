@@ -10,6 +10,10 @@ class ProximityList extends Component {
   constructor(props) {
     super(props);
     this.anim = new Animated.Value(0);
+    const { height, mapHeight, isX } = this.props;
+    this.height = isX ? 
+      {}
+    : { height: height + mapHeight };
   }
 
   shouldComponentUpdate() {
@@ -28,8 +32,7 @@ class ProximityList extends Component {
               extrapolate: 'clamp',
             })}
           ],
-          height: height + mapHeight,
-        }]}>
+        }, this.height]}>
           <MapView anim={this.anim} />
           <List anim={this.anim} />
         </Animated.View>
@@ -39,8 +42,8 @@ class ProximityList extends Component {
 }
 
 const mSTP = ({ Dimensions }) => {
-  const { bodyHeight, mapHeight } = Dimensions;
-  return { height: bodyHeight, mapHeight };
+  const { bodyHeight, mapHeight, isX } = Dimensions;
+  return { height: bodyHeight, mapHeight, isX };
 }
 
 export default connect(mSTP)(ProximityList);
