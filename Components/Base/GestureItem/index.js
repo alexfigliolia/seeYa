@@ -24,10 +24,7 @@ class GestureItem extends Component {
 		}).start();
 	}
 
-	shouldComponentUpdate({ index, length }) {
-		const curProps = this.props;
-		if(index !== curProps.index) return true;
-		else if(length !== curProps.length) return true;
+	shouldComponentUpdate() {
 		return false;
 	}
 
@@ -37,8 +34,7 @@ class GestureItem extends Component {
 	}
 
 	render() {
-		const { listItemWidth, index, length, children } = this.props;
-		const marginTop = index === 0 ? 10 : 5;
+		const { listItemWidth, children } = this.props;
 		return (
 			<View style={{ position: 'relative' }}>
 				<TouchableWithoutFeedback>
@@ -52,8 +48,6 @@ class GestureItem extends Component {
 					  onSnap={this.onSnap}>
 						<Animated.View style={[BaseStyles.center, Styles.listItem, {
 							width: listItemWidth,
-							marginTop,
-							marginBottom: index === length - 1 ? 10 : 5,
 							opacity: this.anim.interpolate({
 								inputRange: [0, 1],
 								outputRange: [0, 1]
@@ -69,9 +63,7 @@ class GestureItem extends Component {
 						</Animated.View>
 					</Interactable.View>
 				</TouchableWithoutFeedback>
-				<RevealItem 
-					anim={this.gesture}
-					style={{ top: marginTop }} />
+				<RevealItem anim={this.gesture} />
 			</View>
 		);
 	}
