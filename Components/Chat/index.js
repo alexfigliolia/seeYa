@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import { View, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import Conversation from './Conversation';
+import Styles from './Styles';
+import BaseStyles from '../Base/Styles';
+const { container, fillContainer } = BaseStyles;
+
+class Chat extends Component {
+	constructor(props) {
+    super(props);
+    this.length = 0;
+    this.renderItem = this.renderItem.bind(this);
+    this.keyExtractor = this.keyExtractor.bind(this);
+    this.getItemLayout = this.getItemLayout.bind(this);
+    this.initialNumToRender = this.initialNumToRender.bind(this);
+  }
+
+	UNSAFE_componentWillReceiveProps({ conversations: { length }}) {
+  	if(length !== this.props.conversations.length) this.length = length;
+  }
+
+	renderItem({ item, index }) {
+		return (
+			<Conversation 
+				index={index}
+				{...item}
+				length={this.length}
+        infoWidth={0} />
+		);
+	}
+
+	keyExtractor({ name }, index) {
+		return `${name}-${index}`;
+	}
+
+	getItemLayout(data, index) {
+    return { length: 100, offset: 100 * index, index }
+  }
+
+  initialNumToRender(height) {
+  	return Math.ceil(height/100);
+  }
+
+	render() {
+		const { bodyHeight, conversations } = this.props;
+		return (
+			<View style={[container, { 
+				height: bodyHeight,
+			}]}>
+				<FlatList
+          data={conversations}
+          style={[fillContainer, Styles.list]}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+          getItemLayout={this.getItemLayout}
+          initialNumToRender={this.initialNumToRender(bodyHeight)}
+          initialScrollIndex={0}
+          removeClippedSubviews={this.length > 20}
+          keyboardShouldPersistTaps='handled' />
+			</View>
+		);
+	}
+}
+
+const mSTP = ({ Dimensions: { bodyHeight }, Chat: { conversations }}) => {
+	return { bodyHeight, conversations };
+}
+
+export default connect(mSTP)(Chat);
