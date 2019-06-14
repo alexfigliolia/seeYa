@@ -9,12 +9,19 @@ import ListItemStyles from '../../Base/ListItem/Styles';
 import Styles from '../Styles';
 
 class Conversation extends Component {
+
+	shouldComponentUpdate({ index, user, image }) {
+		const curProps = this.props;
+		if(index !== curProps.index) return true;
+		else if(user !== curProps.user) return true;
+		else if(image !== curProps.image) return true;
+		return false;
+	}
+
 	render() {
-		const { index, length, user, image, listItemInfoWidth } = this.props; 
+		const { index, user, image, listItemInfoWidth } = this.props; 
 		return (
-			<GestureItem
-				index={index}
-				length={length}>
+			<GestureItem index={index}>
 				<View style={Styles.conversationCenter}>
 					<Avatar image={image} />
 					<View style={[ListItemStyles.infoMargin, { width: listItemInfoWidth }]}>

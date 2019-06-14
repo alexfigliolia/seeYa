@@ -9,15 +9,10 @@ const { container, fillContainer } = BaseStyles;
 class Chat extends Component {
 	constructor(props) {
     super(props);
-    this.length = 0;
     this.renderItem = this.renderItem.bind(this);
     this.keyExtractor = this.keyExtractor.bind(this);
     this.getItemLayout = this.getItemLayout.bind(this);
     this.initialNumToRender = this.initialNumToRender.bind(this);
-  }
-
-	UNSAFE_componentWillReceiveProps({ conversations: { length }}) {
-  	if(length !== this.props.conversations.length) this.length = length;
   }
 
 	renderItem({ item, index }) {
@@ -25,7 +20,6 @@ class Chat extends Component {
 			<Conversation 
 				index={index}
 				{...item}
-				length={this.length}
         infoWidth={0} />
 		);
 	}
@@ -35,7 +29,7 @@ class Chat extends Component {
 	}
 
 	getItemLayout(data, index) {
-    return { length: 100, offset: 100 * index, index }
+    return { length: 110, offset: 110 * index, index }
   }
 
   initialNumToRender(height) {
@@ -45,7 +39,7 @@ class Chat extends Component {
 	render() {
 		const { bodyHeight, conversations } = this.props;
 		return (
-			<View style={[container, { 
+			<View style={[container, Styles.container, { 
 				height: bodyHeight,
 			}]}>
 				<FlatList
@@ -56,7 +50,7 @@ class Chat extends Component {
           getItemLayout={this.getItemLayout}
           initialNumToRender={this.initialNumToRender(bodyHeight)}
           initialScrollIndex={0}
-          removeClippedSubviews={this.length > 20}
+          removeClippedSubviews={conversations.length > 20}
           keyboardShouldPersistTaps='handled' />
 			</View>
 		);
