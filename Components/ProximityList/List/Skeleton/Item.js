@@ -46,8 +46,8 @@ class Item extends Component {
 				let next;
 				if(locations[0] >= 0.9 && plus) plus = false;
 				else if(locations[0] <= 0.1 && !plus) plus = true;
-				if(plus) next = parseFloat(locations[0] + 0.1);
-				else next = parseFloat(locations[0] - 0.1);
+				if(plus) next = parseFloat(locations[0] + 0.05);
+				else next = parseFloat(locations[0] - 0.05);
 				return { locations: [ next, 1 ] };
 			});
   	}, 17);
