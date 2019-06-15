@@ -85,7 +85,7 @@ class MapContainer extends Component {
     if(
       Math.abs(this.distanceTraveled) >= 10 && 
       (Math.abs(vy) >= 0.5 || 
-      Math.abs(dy) >= 0.2 * height)
+      Math.abs(dy) >= 0.3 * height)
     ) {
       const goingDown = this.distanceTraveled > 0;
       this.updateHeight(
