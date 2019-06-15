@@ -30,7 +30,7 @@ export default class Ripple extends Component {
 	}
 
 	render() {
-		const { width, top, left, timeStamp, circumference, radius } = this.props;
+		const { top, left, timeStamp, circumference, radius } = this.props;
 		return (
 			<Animated.View 
 				pointerEvents='none'

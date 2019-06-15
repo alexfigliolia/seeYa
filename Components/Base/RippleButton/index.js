@@ -52,7 +52,6 @@ export default class RippleButton extends Component {
 									key={touch.timestamp}
 									index={i}
 									length={length}
-									width={width}
 									{...touch}
 									clear={this.clear} />
 							);
