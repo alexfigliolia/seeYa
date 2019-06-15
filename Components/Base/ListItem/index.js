@@ -3,6 +3,7 @@ import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import Styles from './Styles';
 import BaseStyles from '../Styles';
+const { center, fillContainer } = this.props;
 
 class ListItem extends Component {
 	constructor(props) {
@@ -25,9 +26,9 @@ class ListItem extends Component {
 	}
 
 	render() {
-		const { listItemWidth, children } = this.props;
+		const { listItemWidth, children, onPress } = this.props;
 		return (
-			<Animated.View style={[BaseStyles.center, Styles.listItem, {
+			<Animated.View style={[center, Styles.listItem, {
 				width: listItemWidth,
 				opacity: this.anim.interpolate({
 					inputRange: [0, 1],
@@ -40,7 +41,11 @@ class ListItem extends Component {
 					})}
 				]
 			}]}>
-				{ children }
+				<TouchableWithoutFeedback 
+					onPress={onPress}
+					style={fillContainer}>
+					{ children }
+				</TouchableWithoutFeedback>
 			</Animated.View>
 		);
 	}

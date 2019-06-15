@@ -25,7 +25,8 @@ class Friend extends Component {
 		const { distance, name, index, length, listItemInfoWidth, image } = this.props;
 		return (
 			<GestureItem index={index}>
-				<View style={[fillContainer, center, Styles.friendCenter]}>
+				<View 
+					style={[fillContainer, center, Styles.friendCenter]}>
 					<Avatar image={image} />
 					<View style={[ListItemStyles.infoMargin, { width: listItemInfoWidth }]}>
 						<UserName name={name} />

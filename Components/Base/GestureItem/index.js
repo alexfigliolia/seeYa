@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Animated, TouchableWithoutFeedback, View, Easing } from 'react-native';
+import { Animated, View, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import Interactable from 'react-native-interactable';
+import RippleButton from '../RippleButton';
 import RevealItem from './RevealItem';
 import Styles from '../ListItem/Styles';
 import BaseStyles from '../Styles';
@@ -34,35 +35,37 @@ class GestureItem extends Component {
 	}
 
 	render() {
-		const { listItemWidth, children } = this.props;
+		const { listItemWidth, children, onPress } = this.props;
 		return (
 			<View style={{ position: 'relative' }}>
-				<TouchableWithoutFeedback>
-					<Interactable.View
-						ref={c => this.item = c}
-					  horizontalOnly={true}
-					  snapPoints={[{x: -80}, {x: 0}]}
-					  boundaries={{left: -160, right: 0}}
-					  animatedNativeDriver={true}
-					  animatedValueX={this.gesture}
-					  onSnap={this.onSnap}>
-						<Animated.View style={[BaseStyles.center, Styles.listItem, {
-							width: listItemWidth,
-							opacity: this.anim.interpolate({
+				<Interactable.View
+					ref={c => this.item = c}
+				  horizontalOnly={true}
+				  snapPoints={[{x: -80}, {x: 0}]}
+				  boundaries={{left: -160, right: 0}}
+				  animatedNativeDriver={true}
+				  animatedValueX={this.gesture}
+				  onSnap={this.onSnap}>
+					<Animated.View style={[BaseStyles.center, Styles.listItem, {
+						width: listItemWidth,
+						opacity: this.anim.interpolate({
+							inputRange: [0, 1],
+							outputRange: [0, 1]
+						}),
+						transform: [
+							{ translateY: this.anim.interpolate({
 								inputRange: [0, 1],
-								outputRange: [0, 1]
-							}),
-							transform: [
-								{ translateY: this.anim.interpolate({
-									inputRange: [0, 1],
-									outputRange: [100, 0]
-								})}
-							],
-						}]}>
+								outputRange: [100, 0]
+							})}
+						],
+					}]}>
+						<RippleButton 
+							onPress={onPress}
+							width={listItemWidth}>
 							{ children }
-						</Animated.View>
-					</Interactable.View>
-				</TouchableWithoutFeedback>
+						</RippleButton>
+					</Animated.View>
+				</Interactable.View>
 				<RevealItem anim={this.gesture} />
 			</View>
 		);
