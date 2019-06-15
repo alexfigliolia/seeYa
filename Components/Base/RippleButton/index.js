@@ -9,7 +9,6 @@ export default class RippleButton extends Component {
 	constructor(props) {
 	  super(props);
 	  this.state = { touches: [] };
-	  this.halfWidth = this.props.width/2;
 		this.onPress = this.onPress.bind(this);
 		this.clear = this.clear.bind(this);
 	}
