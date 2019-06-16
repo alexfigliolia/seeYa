@@ -30,7 +30,7 @@ export default class Ripple extends Component {
 	}
 
 	render() {
-		const { top, left, timeStamp, circumference, radius } = this.props;
+		const { top, left, timeStamp, circumference, radius, style } = this.props;
 		return (
 			<Animated.View 
 				pointerEvents='none'
@@ -50,7 +50,7 @@ export default class Ripple extends Component {
 						inputRange: [0, 1],
 						outputRange: [1, 0]
 					})
-				}]}/>
+				}, style]}/>
 		);
 	}
 }

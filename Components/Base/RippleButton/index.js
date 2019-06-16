@@ -37,7 +37,7 @@ export default class RippleButton extends Component {
 	}
 
 	render() {
-		const { onPress, children, width, raised = true } = this.props;
+		const { onPress, children, width, raised = true, rippleStyle = {} } = this.props;
 		const { touches } = this.state;
 		const { length } = touches;
 		return (
@@ -53,6 +53,7 @@ export default class RippleButton extends Component {
 									index={i}
 									length={length}
 									{...touch}
+									style={rippleStyle}
 									clear={this.clear} />
 							);
 						})
