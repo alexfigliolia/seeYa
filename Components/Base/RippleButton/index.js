@@ -14,11 +14,11 @@ export default class RippleButton extends Component {
 	}
 
 	onPress(e) {
-		const { width, onPress } = this.props;
+		const { width, height = 100, onPress } = this.props;
 		onPress && onPress();
 		const { locationX, locationY, timestamp } = e.nativeEvent;
 		const diffX = Math.max(locationX, width - locationX);
-		const diffY = Math.max(locationY, 100 - locationY);
+		const diffY = Math.max(locationY, height - locationY);
 		const circumference = Math.sqrt((diffX * diffX) + (diffY * diffY)) * 2;
 		const radius = circumference/2;
 		this.setState(({ touches }) => ({
@@ -37,7 +37,7 @@ export default class RippleButton extends Component {
 	}
 
 	render() {
-		const { onPress, children, width } = this.props;
+		const { onPress, children, width, raised = true } = this.props;
 		const { touches } = this.state;
 		const { length } = touches;
 		return (
@@ -58,7 +58,7 @@ export default class RippleButton extends Component {
 						})
 					}
 					<View 
-						style={[Styles.raised, center]}
+						style={[raised && Styles.raised, center]}
 						pointerEvents='none'>
 						{ children }
 					</View>
