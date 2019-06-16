@@ -23,7 +23,7 @@ const initialState = {
 	bodyHeight: height - (headerHeight + footerHeight),
 	listItemWidth,
 	listItemInfoWidth,
-	avoidKeyboard: headerHeight + 50,
+	avoidKeyboard: headerHeight,
 	screen: 0,
 	chatFontSize: isX ? 16 : 14,
 };

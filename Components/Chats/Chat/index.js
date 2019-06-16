@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import Header from './Header';
 import Messages from './Messages';
@@ -17,22 +17,26 @@ class Chat extends Component {
 	}
 
 	render() {
-		const { chat: { id, user, image }} = this.props;
+		const { chat: { id, user, image, }, avoidKeyboard } = this.props;
  		return (
-			<View style={Styles.container}>
+			<KeyboardAvoidingView 
+				style={Styles.container}
+				behavior='height'
+				keyboardVerticalOffset={avoidKeyboard}>
 				<Header
 					user={user}
 					image={image} />
 				<Messages />
 				<Input />
-			</View>
+			</KeyboardAvoidingView>
 		);
 	}
 }
 
-const mSTP = ({ Chat }) => {
+const mSTP = ({ Chat, Dimensions }) => {
 	const { conversations, activeIndex } = Chat;
-	return { chat: conversations[activeIndex] };
+	const { avoidKeyboard } = Dimensions;
+	return { chat: conversations[activeIndex], avoidKeyboard };
 }
 
 export default connect(mSTP)(Chat);
