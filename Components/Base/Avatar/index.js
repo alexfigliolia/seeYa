@@ -10,12 +10,12 @@ export default class Avatar extends Component {
 	}
 
 	render() {
-		const { image } = this.props;
+		const { image, style={} } = this.props;
 		return (
-			<View style={[BaseStyles.center, Styles.image]}>
+			<View style={[BaseStyles.center, Styles.image, style]}>
 				<Image 
 					source={image ? image : require('../../../public/user.png')}
-					style={Styles.avatar} />
+					style={[Styles.avatar, style]} />
 			</View>
 		);
 	}

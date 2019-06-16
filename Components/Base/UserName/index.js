@@ -9,8 +9,9 @@ export default class UserName extends Component {
 	}
 
 	render() {
+		const { name, style={} } = this.props;
 		return (
-			<Text style={Styles.name}>{this.props.name}</Text>
+			<Text style={[Styles.name, style]}>{name}</Text>
 		);
 	}
 }
