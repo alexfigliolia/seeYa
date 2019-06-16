@@ -5,6 +5,7 @@ import { getLocation, getFriends, clearWatch } from './Actions/Proximity';
 import Header from './Components/Header';
 import ProximityList from './Components/ProximityList';
 import Chats from './Components/Chats';
+import Profile from './Components/Profile';
 import Footer from './Components/Footer';
 import Styles from './Components/Base/Styles';
 const { container, center } = Styles;
@@ -26,14 +27,13 @@ class App extends Component {
   }
 
   render() {
+    const { screen } = this.props;
     return (
       <View style={[center, container]}>
         <Header />
-        {
-          this.props.screen ? 
-            <Chats />
-          : <ProximityList />
-        }
+        { screen === 0 && <ProximityList /> }
+        { screen === 1 && <Chats /> }
+        { screen === 2 && <Profile /> }
         <Footer />
       </View>
     );
