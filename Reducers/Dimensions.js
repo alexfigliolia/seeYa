@@ -23,7 +23,7 @@ const initialState = {
 	bodyHeight: height - (headerHeight + footerHeight),
 	listItemWidth,
 	listItemInfoWidth,
-	screen: 0
+	screen: 1
 };
 
 export default (state = initialState, action) => {

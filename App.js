@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getLocation, getFriends, clearWatch } from './Actions/Proximity';
 import Header from './Components/Header';
 import ProximityList from './Components/ProximityList';
-import Chat from './Components/Chat';
+import Chats from './Components/Chats';
 import Footer from './Components/Footer';
 import Styles from './Components/Base/Styles';
 const { container, center } = Styles;
@@ -31,7 +31,7 @@ class App extends Component {
         <Header />
         {
           this.props.screen ? 
-            <Chat />
+            <Chats />
           : <ProximityList />
         }
         <Footer />

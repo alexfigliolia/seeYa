@@ -20,11 +20,10 @@ class Footer extends Component {
 	  this.pos2 = width/3;
 	  this.pos3 = this.pos2 * 2;
 	  this.anim = new Animated.Value(0);
-	  this.setActive = this.setActive.bind(this);
 	}
 
-	setActive(index) {
-		this.setState({ active: index });
+	componentDidMount() {
+		this.switch(this.props.screen);
 	}
 
 	shouldComponentUpdate() {
@@ -33,12 +32,16 @@ class Footer extends Component {
 
 	UNSAFE_componentWillReceiveProps({ screen }) {
 		if(screen !== this.props.screen) {
-			Animated.spring(this.anim, {
-				toValue: screen,
-				bounciness: 10,
-				useNativeDriver: true
-			}).start();
+			this.switch(screen);
 		}
+	}
+
+	switch(screen) {
+		Animated.spring(this.anim, {
+			toValue: screen,
+			bounciness: 10,
+			useNativeDriver: true
+		}).start();
 	}
 
 	render() {
