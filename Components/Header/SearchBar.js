@@ -7,12 +7,10 @@ import Styles from './Styles';
 class SearchBar extends Component {
 	constructor(props) {
 	  super(props);
-	  this.onFocus = this.onFocus.bind(this);
-	  this.onChange = this.onChange.bind(this);
 	  const { height, width, widthOffset } = this.props;
-	  this.searchIconAreaWithMargin = height + 21;
 	  this.containerWidth = width - widthOffset;
 	  this.fontSize = (height * 0.85) * 0.5;
+	  this.onChange = this.onChange.bind(this);
 	}
 
 	shouldComponentUpdate({ searchValue }) {
@@ -25,19 +23,12 @@ class SearchBar extends Component {
 		}
 	}
 
-	onFocus() {
-		const { searchValue, updateSearchValue } = this.props;
-		if(searchValue === 'Search:') {
-			updateSearchValue('');
-		}
-	}
-
 	onChange(value) {
 		this.props.updateSearchValue(value);
 	}
 
 	render() {
-		const { height, width, anim, searchValue, widthOffset } = this.props;
+		const { height, width, anim, searchValue } = this.props;
 		return (
 			<Animated.View style={[Styles.searchBar, {
 				transform: [
@@ -59,10 +50,8 @@ class SearchBar extends Component {
 	        autoCorrect={false}
 	        autoCompleteType='name'
 	        textContentType='name'
-	        onFocus={this.onFocus}
 	        onChangeText={this.onChange}
-	        value={searchValue}
-	      />
+	        value={searchValue} />
 			</Animated.View>
 		);
 	}

@@ -1,5 +1,5 @@
 const initialState = {
-	searchValue: 'Search:',
+	searchValue: '',
 	searching: false,
 };
 
