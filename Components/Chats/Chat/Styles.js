@@ -4,7 +4,7 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
-		justifyContent: 'flex-start',
+		justifyContent: 'flex-end',
 		alignItems: 'center'
 	},
 	header: {
