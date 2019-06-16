@@ -19,7 +19,7 @@ const searchFriends = value => {
 		const results = [];
 		for(let i = 0; i < friends.length; i++) {
 			const { name } = friends[i];
-			if(name.indexOf(value) !== -1) results.push(friends[i]);
+			if(name.toLowerCase().indexOf(value.toLowerCase()) !== -1) results.push(friends[i]);
 		}
 		dispatch({ type: 'SEARCH_FRIENDS', results });
 	}
