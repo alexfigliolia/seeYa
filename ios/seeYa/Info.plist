@@ -43,6 +43,10 @@
 	<string>For locating you and your nearest friends</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>For locating you and your nearest friends</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Use voice recognition to instant message your friends hands-free</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Use voice recognition to instant message your friends hands-free</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

@@ -39,6 +39,8 @@ PODS:
     - React
   - react-native-maps (0.24.2):
     - React
+  - react-native-voice (0.3.0):
+    - React
   - React/Core (0.59.9):
     - yoga (= 0.59.9.React)
   - React/CxxBridge (0.59.9):
@@ -104,6 +106,7 @@ DEPENDENCIES:
   - Interactable (from `../node_modules/react-native-interactable`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-voice (from `../node_modules/react-native-voice`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -142,23 +145,26 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-voice:
+    :path: "../node_modules/react-native-voice"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: b0b70acf63ee888829b7c2ebbf6b50e227396e55
-  DoubleConversion: f667477bface883238976991f46105fcacc96d56
-  Folly: 391015f9b49dcda4ab622abb43ee71ab77c96269
-  glog: 103925dc1e1722c8cda98f81885a182250ffee22
+  DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
+  Folly: de497beb10f102453a1afa9edbf8cf8a251890de
+  glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   Interactable: 45e5d4d1bb2d196f08b011010c6913469ccf4d0a
   React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
   react-native-google-maps: 77af0fa3b5325c72c107d054677911f6e6170496
   react-native-maps: bb480348a3fe1e5a811fed1ba3387b329161c5cc
+  react-native-voice: 313189be1fe80899150cf5a7070cb634920ac74e
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 26f0a9e74dae17c2b48c9f6871edef7d9d23f9a4
+PODFILE CHECKSUM: cda9e1bae90b03b09869bb9bb467d3e77d5931f8
 
 COCOAPODS: 1.6.0.beta.1

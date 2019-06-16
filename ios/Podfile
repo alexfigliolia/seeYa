@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'seeYa' do
   rn_path = '../node_modules/react-native'
@@ -34,6 +34,8 @@ target 'seeYa' do
   pod 'Interactable', :path => '../node_modules/react-native-interactable'
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  pod 'react-native-voice', :path => '../node_modules/react-native-voice'
+
 end
 
 post_install do |installer|
