@@ -26,10 +26,6 @@ class Messages extends Component {
   	return false;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-  	this.list.scrollToIndex({ index: 0, animated: true });
-  }
-
 	renderItem({ item, index }) {
 		return (
 			<Message
@@ -44,18 +40,16 @@ class Messages extends Component {
 	}
 
   initialNumToRender() {
-  	return Math.ceil(this.props.height/50);
+  	return Math.ceil(this.props.height/40);
   }
 
 	render() {
-		const { messages } = this.props;
+		const { messages, avoidKeyboard } = this.props;
 		return (
 			<KeyboardAvoidingView 
 				style={Styles.container}
 				behavior='height'
-				enabled
-				//headerHeight + chatHeaderHeight
-				keyboardVerticalOffset={90}>
+				keyboardVerticalOffset={avoidKeyboard}>
 				<FlatList
 					ref={c => this.list = c}
 	        data={messages}
@@ -72,9 +66,9 @@ class Messages extends Component {
 }
 
 const mSTP = ({ Chat, Dimensions }) => {
-	const { height } = Dimensions;
+	const { height, avoidKeyboard } = Dimensions;
 	const { messages } = Chat;
-	return { messages, height };
+	return { messages, height, avoidKeyboard };
 }
 
 export default connect(mSTP)(Messages);

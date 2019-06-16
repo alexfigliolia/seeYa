@@ -15,7 +15,14 @@ class Message extends Component {
 	}
 
 	render() {
-		const { index, length, text, user, username } = this.props;
+		const { 
+			index, 
+			length, 
+			text, 
+			user, 
+			username, 
+			chatFontSize
+		} = this.props;
 		return (
 			<View style={[
 				Styles.message, 
@@ -23,12 +30,13 @@ class Message extends Component {
 					Styles.mine 
 				: Styles.theirs,
 				{
-					marginBottom: index === 0 ? 10 : 5,
+					marginBottom: index === 0 ? 15 : 5,
 					marginTop: index === length - 1 ? 10 : 5
 				}
 			]}>
 				<Text style={[
 					Styles.text, 
+					{ fontSize: chatFontSize },
 					user === username ?
 						Styles.textMine
 					: Styles.textTheirs
@@ -38,8 +46,10 @@ class Message extends Component {
 	}
 }
 
-const mSTP = ({ User: { username }}) => {
-	return { username };
+const mSTP = ({ User, Dimensions }) => {
+	const { username } = User;
+	const { chatFontSize } = Dimensions;
+	return { username, chatFontSize };
 }
 
 export default connect(mSTP)(Message);

@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Conversations from './Conversations';
 import Chat from './Chat';
-import Styles from './Styles';
 import BaseStyles from '../Base/Styles';
 
 class Chats extends Component {
@@ -13,12 +12,11 @@ class Chats extends Component {
   }
 
 	render() {
-		const { activeIndex } = this.props;
+		const { activeIndex, height  } = this.props;
 		return (
 			<View style={[
 				BaseStyles.container, 
-				!activeIndex && Styles.container, 
-				{ height: this.props.height }
+				{ height: height }
 			]}>
 				{
 					activeIndex !== null ? 

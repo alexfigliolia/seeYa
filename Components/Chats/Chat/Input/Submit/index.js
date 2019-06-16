@@ -124,7 +124,7 @@ class Submit extends Component {
 
 	render() {
 		const { listening } = this.props;
-		const iconSize = listening ? 10 : 15;
+		const iconSize = listening ? 13.5 : 17.5;
 		return (
 			<View style={[Styles.submit, center]}>
 				{

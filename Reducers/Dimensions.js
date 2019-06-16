@@ -3,7 +3,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const { height, width } = Dimensions.get('window');
 const statusBarHeight = getStatusBarHeight();
-const isX = statusBarHeight > 30;
+export const isX = statusBarHeight > 30;
 const is5 = width <= 320;
 const headerHeight = statusBarHeight + 35;
 const footerHeight = isX ? 75 : 50;
@@ -23,7 +23,9 @@ const initialState = {
 	bodyHeight: height - (headerHeight + footerHeight),
 	listItemWidth,
 	listItemInfoWidth,
-	screen: 1
+	avoidKeyboard: headerHeight + 50,
+	screen: 0,
+	chatFontSize: isX ? 16 : 14,
 };
 
 export default (state = initialState, action) => {

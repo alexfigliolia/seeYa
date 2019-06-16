@@ -1,4 +1,8 @@
 import { StyleSheet } from 'react-native';
+import { isX } from '../../../../Reducers/Dimensions';
+
+const messageMargin = isX ? 15 : 10;
+const messagePadding = isX ? 10 : 7.5
 
 export default StyleSheet.create({
 	container: {
@@ -7,10 +11,10 @@ export default StyleSheet.create({
 		backgroundColor: '#fff',
 	},
 	message: {
-		padding: 7.5,
+		padding: messagePadding,
 		paddingRight: 10,
 		paddingLeft: 10,
-		borderRadius: 16,
+		borderRadius: 20,
 		width: 'auto',
 		maxWidth: '85%',
 		marginTop: 5, 
@@ -19,7 +23,7 @@ export default StyleSheet.create({
 	},
 	mine: {
 		alignSelf: 'flex-end',
-		marginRight: 10,
+		marginRight: messageMargin,
 		backgroundColor: '#FC315D',
 		shadowColor: '#000',
 		shadowOpacity: 0.15,
@@ -28,7 +32,7 @@ export default StyleSheet.create({
 	},
 	theirs: {
 		alignSelf: 'flex-start',
-		marginLeft: 10,
+		marginLeft: messageMargin,
 		backgroundColor: '#DFE4E8',
 		shadowColor: '#000',
 		shadowOpacity: 0.15,
@@ -37,11 +41,15 @@ export default StyleSheet.create({
 	},
 	text: {
 		width: 'auto',
+		fontSize: 14,
 	}, 
 	textMine: {
-		color: '#fff'
+		color: '#fff',
+		fontWeight: '600',
+
 	},
 	textTheirs: {
-		color: '#000'
+		color: '#000',
+		fontWeight: '500',
 	}
 });

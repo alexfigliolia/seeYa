@@ -17,6 +17,7 @@ class Input extends Component {
       },
       update: { type: 'linear' },
     }
+		this.inputWidth = this.props.width - 30;
 		this.onChange = this.onChange.bind(this);
 	}
 
@@ -33,11 +34,16 @@ class Input extends Component {
 	}
 
 	render() {
+		const { text, chatFontSize } = this.props;
 		return (
-			<View style={[Styles.container, BaseStyles.center]}>
+			<View style={[
+				Styles.container, 
+				BaseStyles.center, 
+				{ width: this.inputWidth }
+			]}>
 				<TextInput
 					ref={c => this.input = c}
-	        style={[Styles.textInput]}
+	        style={[Styles.textInput, { fontSize: chatFontSize }]}
 	        placeholder='Message:'
 	        placeholderTextColor='#7C7F8A'
 	        autoCorrect={false}
@@ -45,7 +51,7 @@ class Input extends Component {
 	        textContentType='name'
 	        multiline={true}
 	        numberOfLines={5}
-	        value={this.props.text}
+	        value={text}
 	        onChangeText={this.onChange} />
 	      <Submit />
 			</View>
@@ -53,8 +59,10 @@ class Input extends Component {
 	}
 }
 
-const mSTP = ({ Chat: { text, listComponent }}) => {
-	return { text, listComponent }; 
+const mSTP = ({ Chat, Dimensions }) => {
+	const { text } = Chat;
+	const { width, chatFontSize } = Dimensions;
+	return { text, width, chatFontSize };
 }
 
 export default connect(mSTP, { updateText })(Input);

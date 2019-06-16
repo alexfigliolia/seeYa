@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-	container: {
-		marginTop: 5, 
-		marginBottom: 5
-	},
 	list: {
 		width: '100%',
-		overflow: 'visible'
+		overflow: 'visible',
+		marginTop: 5, 
+		marginBottom: 5,
 	},
 	conversationCenter: {
 		width: '90%',
