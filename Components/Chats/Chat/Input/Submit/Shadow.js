@@ -43,7 +43,7 @@ export default class Shadow extends Component {
 				transform: [
 					{ scale: this.shadow.interpolate({
 						inputRange: [0, 1],
-						outputRange: [1, 1.5]
+						outputRange: [1, 2]
 					})}
 				],
 				opacity: this.shadow.interpolate({

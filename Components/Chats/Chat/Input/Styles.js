@@ -30,7 +30,7 @@ export default StyleSheet.create({
 		backgroundColor: '#FC315D',
 		alignSelf: 'flex-end',
 		marginRight: 6.5,
-		marginBottom: 4.5
+		marginBottom: 3.5
 	},
 	raised: { 
 		zIndex: 2 
