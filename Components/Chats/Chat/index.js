@@ -1,42 +1,36 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Header from './Header';
-import Messages from './Messages';
-import Input from './Input';
+import Messenger from './Messenger';
 import Styles from './Styles';
 
 class Chat extends Component {
 
-	shouldComponentUpdate({ id, user, image }) {
+	shouldComponentUpdate({ chat: { id, user, image }}) {
 		const curProps = this.props;
-		if(id !== curProps.id) return true;
-		else if(user !== curProps.user) return true;
-		else if(image !== curProps.image) return true;
+		if(id !== curProps.chat.id) return true;
+		else if(user !== curProps.chat.user) return true;
+		else if(image !== curProps.chat.image) return true;
 		return false;
 	}
 
 	render() {
-		const { chat: { id, user, image, }, avoidKeyboard } = this.props;
+		const { chat: { id, user, image, } } = this.props;
  		return (
-			<KeyboardAvoidingView 
-				style={Styles.container}
-				behavior='height'
-				keyboardVerticalOffset={avoidKeyboard}>
+			<View style={Styles.container}>
 				<Header
 					user={user}
 					image={image} />
-				<Messages />
-				<Input />
-			</KeyboardAvoidingView>
+				<Messenger />
+			</View>
 		);
 	}
 }
 
-const mSTP = ({ Chat, Dimensions }) => {
+const mSTP = ({ Chat }) => {
 	const { conversations, activeIndex } = Chat;
-	const { avoidKeyboard } = Dimensions;
-	return { chat: conversations[activeIndex], avoidKeyboard };
+	return { chat: conversations[activeIndex] };
 }
 
 export default connect(mSTP)(Chat);
