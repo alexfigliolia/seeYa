@@ -35,6 +35,7 @@ target 'seeYa' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
   pod 'react-native-voice', :path => '../node_modules/react-native-voice'
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
 end
 

@@ -47,6 +47,8 @@
     <string>Use voice recognition to instant message your friends</string>
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>Use voice recognition to instant message your friends</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Change profile images</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
