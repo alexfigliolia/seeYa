@@ -24,7 +24,7 @@ const initialState = {
 	listItemWidth,
 	listItemInfoWidth,
 	avoidKeyboard: headerHeight,
-	screen: 0,
+	screen: 2,
 	chatFontSize: isX ? 16 : 14,
 };
 
