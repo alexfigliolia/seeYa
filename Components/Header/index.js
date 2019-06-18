@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Animated, View } from 'react-native';
 import { connect } from 'react-redux';
+import { LinearTextGradient } from 'react-native-text-gradient';
 import SearchIcon from './SearchIcon';
 import SearchBar from './SearchBar';
 import Styles from './Styles';
 import BaseStyles from '../Base/Styles';
 const { center, fillContainer } = BaseStyles;
+
+const AnimatedTextGradient = Animated.createAnimatedComponent(LinearTextGradient);
 
 class Header extends Component {
 	constructor(props) {
@@ -43,20 +46,25 @@ class Header extends Component {
 	}
 
 	render() {
-		const { height, statusBarHeight, width } = this.props; 
+		const { height, statusBarHeight, width, gradientColors } = this.props; 
 		return (
 			<View style={[Styles.header, center, { height }]}>
 				<View style={[Styles.center, fillContainer]}>
-					<Animated.Text style={[Styles.logo, {
-						marginTop: this.logoMarginTop,
-						fontSize: this.fontSize,
-						transform: [
-							{ translateX: this.anim.interpolate({
-								inputRange: [0, 1],
-								outputRange: [0, -width/2]
-							})}
-						]
-					}]}>See Ya</Animated.Text>
+					<AnimatedTextGradient 
+						colors={gradientColors}
+						locations={[0, 1]}
+					  start={{ x: 0, y: 0 }}
+					  end={{ x: 0, y: 1 }}
+						style={[Styles.logo, {
+							marginTop: this.logoMarginTop,
+							fontSize: this.fontSize,
+							transform: [
+								{ translateX: this.anim.interpolate({
+									inputRange: [0, 1],
+									outputRange: [0, -width/2]
+								})}
+							]
+						}]}>See Ya</AnimatedTextGradient>
 					<SearchIcon 
 						iconHeight={this.iconHeight}
 						dims={this.searchIconDims} />
@@ -71,9 +79,9 @@ class Header extends Component {
 }
 
 const mSTP = ({ Dimensions, Header }) => {
-	const { headerHeight, statusBarHeight, width } = Dimensions;
+	const { headerHeight, statusBarHeight, width, gradientColors } = Dimensions;
 	const { searching } = Header;
-	return { height: headerHeight, statusBarHeight, width, searching };
+	return { height: headerHeight, statusBarHeight, width, gradientColors, searching };
 }
 
 export default connect(mSTP)(Header);

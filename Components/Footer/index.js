@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, View, Image } from 'react-native';
+import { Animated, Image } from 'react-native';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 import Tab from './Tab';
 import Cover from './Cover';
 import Marker from './Marker';
@@ -45,10 +46,13 @@ class Footer extends Component {
 	}
 
 	render() {
+		const { footerHeight, gradientColors } = this.props;
 		return (
-			<View style={[Styles.footer, BaseStyles.center, { 
-				height: this.props.footerHeight,
-			}]}>
+			<LinearGradient 
+				style={[Styles.footer, BaseStyles.center, { 
+					height: footerHeight,
+				}]}
+				colors={gradientColors}>
 				<Marker 
 					anim={this.anim}
 					pos2={this.pos2}
@@ -69,13 +73,13 @@ class Footer extends Component {
 					index={2} 
 					image={User}
 					activeImage={UserPink} />
-			</View>
+			</LinearGradient>
 		);
 	}
 }
 
-const mSTP = ({ Dimensions: { footerHeight, width, screen }}) => {
-	return { footerHeight, width, screen };
+const mSTP = ({ Dimensions: { footerHeight, width, screen, gradientColors }}) => {
+	return { footerHeight, width, screen, gradientColors };
 }
 
 export default connect(mSTP)(Footer);

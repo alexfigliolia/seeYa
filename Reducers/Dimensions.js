@@ -26,6 +26,7 @@ const initialState = {
 	avoidKeyboard: headerHeight,
 	screen: 2,
 	chatFontSize: isX ? 16 : 14,
+	gradientColors: ['#FD6162', '#FC315D'],
 };
 
 export default (state = initialState, action) => {
