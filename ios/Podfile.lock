@@ -96,6 +96,8 @@ PODS:
     - React/RCTBlob
   - RNSVG (9.5.1):
     - React
+  - RNTextGradientView (0.1.6):
+    - React
   - yoga (0.59.9.React)
 
 DEPENDENCIES:
@@ -123,6 +125,7 @@ DEPENDENCIES:
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNTextGradientView (from `../node_modules/react-native-text-gradient`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 SPEC REPOS:
@@ -152,6 +155,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-voice"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNTextGradientView:
+    :path: "../node_modules/react-native-text-gradient"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
@@ -169,8 +174,9 @@ SPEC CHECKSUMS:
   react-native-maps: bb480348a3fe1e5a811fed1ba3387b329161c5cc
   react-native-voice: 313189be1fe80899150cf5a7070cb634920ac74e
   RNSVG: 4834be1d644eb77f0e3f6de851881b83758a3124
+  RNTextGradientView: a0ddcc2cb5a2b5de13652a0059a17abd8c5acd87
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 23814a974e36e8c7716bedec35c283e9edf7f513
+PODFILE CHECKSUM: a6672300b6dc46f65d7c3b91043e9679dc950e07
 
 COCOAPODS: 1.6.0.beta.1

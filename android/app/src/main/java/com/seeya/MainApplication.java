@@ -3,6 +3,7 @@ package com.seeya;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import iyegoroff.RNTextGradient.RNTextGradientPackage;
 import com.horcrux.svg.SvgPackage;
 import com.wenkesj.voice.VoicePackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNTextGradientPackage(),
             new SvgPackage(),
             new VoicePackage()
       );

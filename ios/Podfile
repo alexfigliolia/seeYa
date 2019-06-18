@@ -37,6 +37,8 @@ target 'seeYa' do
   pod 'react-native-voice', :path => '../node_modules/react-native-voice'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'RNTextGradientView', :path => '../node_modules/react-native-text-gradient'
+
 end
 
 post_install do |installer|
