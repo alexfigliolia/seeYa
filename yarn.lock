@@ -4923,6 +4923,11 @@ react-native-svg@^9.5.1:
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-9.5.1.tgz#eb21fa7eb5d71649620541e6549c6ed425d80240"
   integrity sha512-cRGfomzG/5LEwuJ6ct3m5yccckeI9aj8BNYwDPVxOeJ84LuJuvk5OqcjlYNeEzOWmWiH+QrFXfpLH1ag04bUeQ==
 
+react-native-text-gradient@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/react-native-text-gradient/-/react-native-text-gradient-0.1.6.tgz#d0085e1c978b737425b33f19addfec2637acd424"
+  integrity sha512-wSGAsD2lPeAzk9R5oYYCOvdRzy0A7+ZnfPumM2YxjCKR3/UOAQGpvG6/RugbFCDsxQJHNhjZOlGpX85y3VbsEw==
+
 react-native-voice@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-voice/-/react-native-voice-0.3.0.tgz#2ca3ff8f8f6fc6d087e10b6d3ecd50af8e01a166"
