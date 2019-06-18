@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "build": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios --minify true",
+    "postinstall": "node node_modules/react-native-text-gradient/patch-rn.js",
     "test": "jest"
   },
   "dependencies": {
