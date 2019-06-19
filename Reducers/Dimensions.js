@@ -24,7 +24,7 @@ const initialState = {
 	listItemWidth,
 	listItemInfoWidth,
 	avoidKeyboard: headerHeight,
-	screen: 2,
+	screen: 0,
 	chatFontSize: isX ? 16 : 14,
 	gradientColors: ['#FD6162', '#FC315D'],
 };
