@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, View, PanResponder, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
-import MapView from './Mapview';
+import MapView from '../../Base/MapView';
 import PullTab from './PullTab';
 import Styles from './Styles';
 import BaseStyles from '../../Base/Styles';

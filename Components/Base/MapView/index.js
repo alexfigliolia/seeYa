@@ -4,8 +4,8 @@ import MapView, { Marker, AnimatedRegion, PROVIDER_GOOGLE } from 'react-native-m
 import { connect } from 'react-redux';
 import { showMarkers } from '../../../Actions/Proximity';
 import Markers from './Markers';
-import BaseStyles from '../../Base/Styles';
-const { center, fillContainer } = BaseStyles;
+import BaseStyles from '../Styles';
+const { fillContainer } = BaseStyles;
 
 class Mapview extends Component {
 	constructor(props) {
