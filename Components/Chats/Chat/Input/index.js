@@ -17,7 +17,9 @@ class Input extends Component {
       },
       update: { type: 'linear' },
     }
-		this.inputWidth = this.props.width - 30;
+    const { width, isX } = this.props;
+    const offset = isX ? 30 : 20;
+		this.inputWidth = width - offset;
 		this.onChange = this.onChange.bind(this);
 	}
 
@@ -61,7 +63,7 @@ class Input extends Component {
 
 const mSTP = ({ Chat, Dimensions }) => {
 	const { text } = Chat;
-	const { width, chatFontSize } = Dimensions;
+	const { isX, width, chatFontSize } = Dimensions;
 	return { text, width, chatFontSize };
 }
 
