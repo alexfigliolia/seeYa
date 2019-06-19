@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { 
-	TouchableOpacity, 
-	View, 
-	Animated
-} from 'react-native';
+import { View, TouchableOpacity, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { 
 	updateText, 
@@ -14,6 +10,7 @@ import {
 	sendMessage
 } from '../../../../../Actions/Chat';
 import Voice from 'react-native-voice';
+import LinearGradient from 'react-native-linear-gradient';
 import Shadow from './Shadow';
 import Styles from '../Styles';
 import BaseStyles from '../../../../Base/Styles';
@@ -123,37 +120,41 @@ class Submit extends Component {
 	}
 
 	render() {
-		const { listening } = this.props;
+		const { listening, gradientColors } = this.props;
 		const iconSize = listening ? 13.5 : 17.5;
 		return (
-			<View style={[Styles.submit, center]}>
+			<View style={Styles.submitContainer}>
 				{
 					listening &&
-					<Shadow />
+					<Shadow colors={gradientColors} />
 				}
-				<TouchableOpacity 
-					onPress={this.onPress}
-					style={[fillContainer, center, Styles.raised]}>
-					<Animated.Image 
-						style={{
-							height: iconSize,
-							width: iconSize,
-							transform: [
-								{ scale: this.anim.interpolate({
-									inputRange: [0, 1],
-									outputRange: [1, 1.25]
-								})}
-							]
-						}}
-						source={this.getIcon()} />
-				</TouchableOpacity>
+				<LinearGradient 
+					style={[Styles.submit, center]}
+					colors={gradientColors}>
+					<TouchableOpacity 
+						onPress={this.onPress}
+						style={[fillContainer, center, Styles.raised]}>
+						<Animated.Image 
+							style={{
+								height: iconSize,
+								width: iconSize,
+								transform: [
+									{ scale: this.anim.interpolate({
+										inputRange: [0, 1],
+										outputRange: [1, 1.25]
+									})}
+								]
+							}}
+							source={this.getIcon()} />
+					</TouchableOpacity>
+				</LinearGradient>
 			</View>
 		);
 	}
 }
 
-const mSTP = ({ Chat: { text, listening }}) => {
-	return { text, listening };
+const mSTP = ({ Chat: { text, listening }, Dimensions: { gradientColors }}) => {
+	return { text, listening, gradientColors };
 }
 
 export default connect(mSTP, { 

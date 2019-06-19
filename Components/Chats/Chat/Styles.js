@@ -21,9 +21,9 @@ export default StyleSheet.create({
 		position: 'relative'
 	},
 	userImage: {
-		height: 30, 
-		width: 30, 
-		borderRadius: 15,
+		height: 35, 
+		width: 35, 
+		borderRadius: 17.5,
 	},
 	userNameMargin: {
 		marginLeft: 15

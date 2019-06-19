@@ -23,14 +23,16 @@ export default StyleSheet.create({
 		fontWeight: '600',
 	  color: '#434448',
 	},
+	submitContainer: {
+		alignSelf: 'flex-end',
+		marginRight: 6.5,
+		marginBottom: 4
+	},
 	submit: {
 		height: 30,
 		width: 30,
 		borderRadius: 17.5,
 		backgroundColor: '#FC315D',
-		alignSelf: 'flex-end',
-		marginRight: 6.5,
-		marginBottom: 4
 	},
 	raised: { 
 		zIndex: 2 

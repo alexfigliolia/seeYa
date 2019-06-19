@@ -7,12 +7,15 @@ export default StyleSheet.create({
 		right: 10,
 		height: 100,
 		width: 70,
-		backgroundColor: '#FC315D',
+		backgroundColor: 'green',
 		shadowColor: '#000',
 		shadowOpacity: 0.15,
 		shadowRadius: 1.5,
 		shadowOffset: { height: 1.5 },
 		borderRadius: 5,
 		zIndex: 2,
+	},
+	inner: {
+		borderRadius: 5,
 	}
 });

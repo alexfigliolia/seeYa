@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Animated } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Styles from '../Styles';
+
+const AnimatedGradient = Animated.createAnimatedComponent(LinearGradient);
 
 export default class Shadow extends Component {
 	constructor(props) {
@@ -39,18 +42,20 @@ export default class Shadow extends Component {
 
 	render() {
 		return (
-			<Animated.View style={[Styles.shadow, {
-				transform: [
-					{ scale: this.shadow.interpolate({
+			<AnimatedGradient 
+				colors={this.props.colors}
+				style={[Styles.shadow, {
+					transform: [
+						{ scale: this.shadow.interpolate({
+							inputRange: [0, 1],
+							outputRange: [1, 2]
+						})}
+					],
+					opacity: this.shadow.interpolate({
 						inputRange: [0, 1],
-						outputRange: [1, 2]
-					})}
-				],
-				opacity: this.shadow.interpolate({
-					inputRange: [0, 1],
-					outputRange: [1, 0]
-				})
-			}]} />
+						outputRange: [1, 0]
+					})
+				}]} />
 		);
 	}
 }

@@ -5,7 +5,7 @@ import Messages from './Messages';
 import Input from './Input';
 import Styles from './Styles';
 
-export class Messenger extends Component {
+class Messenger extends Component {
 	constructor(props) {
 	  super(props);
 	  this.state = { distance: 0 };

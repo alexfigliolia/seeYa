@@ -12,7 +12,6 @@ class GestureItem extends Component {
 	  super(props);
 		this.anim = new Animated.Value(0);
 		this.gesture = new Animated.Value(0);
-		this.onSnap = this.onSnap.bind(this);
 	}
 
 	componentDidMount() {
@@ -29,13 +28,8 @@ class GestureItem extends Component {
 		return false;
 	}
 
-	onSnap(e) {
-		// console.log(e);
-		//instance.snapTo({index: 2});
-	}
-
 	render() {
-		const { listItemWidth, children, onPress } = this.props;
+		const { listItemWidth, gradientColors, children, onPress } = this.props;
 		return (
 			<View style={{ position: 'relative' }}>
 				<Interactable.View
@@ -44,8 +38,7 @@ class GestureItem extends Component {
 				  snapPoints={[{x: -80}, {x: 0}]}
 				  boundaries={{left: -160, right: 0}}
 				  animatedNativeDriver={true}
-				  animatedValueX={this.gesture}
-				  onSnap={this.onSnap}>
+				  animatedValueX={this.gesture}>
 					<Animated.View style={[BaseStyles.center, Styles.listItem, {
 						width: listItemWidth,
 						opacity: this.anim.interpolate({
@@ -66,14 +59,16 @@ class GestureItem extends Component {
 						</RippleButton>
 					</Animated.View>
 				</Interactable.View>
-				<RevealItem anim={this.gesture} />
+				<RevealItem 
+					anim={this.gesture}
+					colors={gradientColors} />
 			</View>
 		);
 	}
 }
 
-const mSTP = ({ Dimensions: { listItemWidth }}) => {
-	return { listItemWidth };
+const mSTP = ({ Dimensions: { listItemWidth, gradientColors }}) => {
+	return { listItemWidth, gradientColors };
 }
 
 export default connect(mSTP)(GestureItem);
