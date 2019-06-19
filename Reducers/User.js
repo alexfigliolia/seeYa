@@ -3,6 +3,9 @@ const initialState = {
 	email: 'alexfigliolia@gmail.com',
 	userID: null,
 	image: null,
+	friends: 500,
+	following: 100,
+	followers: 30000,
 }
 
 export default (state = initialState, action) => {
