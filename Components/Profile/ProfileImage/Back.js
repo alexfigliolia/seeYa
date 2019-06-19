@@ -17,6 +17,7 @@ class Back extends Component {
 	  this.state = { uploading: false, progress: 0 };
 	  this.cameraDims = this.props.dims * 0.4;
 		this.selectImage = this.selectImage.bind(this);
+		this.finish = this.finish.bind(this);
 	}
 
 	shouldComponentUpdate({ visible }, { uploading, progress }) {
@@ -38,7 +39,6 @@ class Back extends Component {
 		clearTimer();
 		if(!this.props.uploading) {
 			ImagePickerIOS.openSelectDialog({}, img => {
-				console.log(img);
 				beginUpload({ uri: img });
 				this.setState({ uploading: true, progress: 0 });
 	 			this.upload(img);
@@ -57,27 +57,29 @@ class Back extends Component {
 	  	onUploadProgress: progressEvent => this.calcProgress(progressEvent) 
 	  })
 		  .then(res => {
-		  	console.log('upload successful');
-		  	console.log(res);
-		  	const { setImgUrl, flip } = this.props;
 		    let url = res.data.secure_url.split('/');
 		    url.splice(-2, 0, 'q_auto/f_auto/w_200,h_200,c_fill');
 		    url = url.join('/');
-		    setImgUrl(url);
-		    flip();
+		    this.props.setImgUrl(url);
 		    //Store url in database
-		  }).catch( err => console.log(err) );
+		  })
+		  .catch( err => console.log(err) );
 	}
 
 	calcProgress({ loaded, total }) {
   	const progress = Math.round((loaded * 100) / total);
-  	console.log(progress);
   	this.setState({ progress });
-  	if(progress == 100) this.setState({ uploading: false, progress: 0 });
+  }
+
+  finish() {
+  	this.props.flip();
+  	setTimeout(() => {
+  		this.setState({ uploading: false, progress: 0 });
+  	}, 500);
   }
 
 	render() {
-		const { dims, anim, borderRadius, visible, flip } = this.props;
+		const { dims, anim, borderRadius, visible, gradientColors } = this.props;
 		const { uploading, progress } = this.state;
 		return (
 			<Animated.View style={[Styles.back, center, {
@@ -101,7 +103,8 @@ class Back extends Component {
 							<ProgressView 
 								dims={dims}
 								progress={progress}
-								flip={flip} />
+								finish={this.finish}
+								colors={gradientColors} />
 						:
 							<View style={[fillContainer, center]}>
 								<Image 
@@ -119,4 +122,8 @@ class Back extends Component {
 	}
 }
 
-export default connect(null, { beginUpload, setImgUrl })(Back);
+const mSTP = ({ Dimensions: { gradientColors }}) => {
+	return { gradientColors };
+}
+
+export default connect(mSTP, { beginUpload, setImgUrl })(Back);

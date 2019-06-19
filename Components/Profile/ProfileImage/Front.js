@@ -20,7 +20,7 @@ class Front extends Component {
 	}
 
 	onPress() {
-		setTimeout(this.props.flip, 250)
+		setTimeout(this.props.flip, 250);
 	}
 
 	render() {

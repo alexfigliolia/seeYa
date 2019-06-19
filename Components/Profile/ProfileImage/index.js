@@ -13,7 +13,9 @@ class ProfileImage extends Component {
 	  this.dims = this.props.listItemWidth*0.45;
 		this.borderRadius = this.dims/2;
 		this.timer = null;
-		this.flip = this.flip.bind(this);
+		this.flipToUpload = this.flipToUpload.bind(this);
+		this.flipBack = this.flipBack.bind(this);
+		this.initTimer = this.initTimer.bind(this);
 		this.clearTimer = this.clearTimer.bind(this);
 	}
 
@@ -21,19 +23,30 @@ class ProfileImage extends Component {
 		return flipped !== this.state.flipped;
 	}
 
-	flip() {
-		this.setState(({ flipped }) => {
+	flipBack() {
+		this.setState(ps => {
 			Animated.timing(this.anim, {
-				toValue: flipped ? 0 : 1,
+				toValue: 0,
 				duration: 350,
 				useNativeDriver: true
-			}).start(() => !flipped && this.initTimer());
-			return { flipped: !flipped };
+			}).start();
+			return { flipped: false };
+		});
+	}
+
+	flipToUpload() {
+		this.setState(ps => {
+			Animated.timing(this.anim, {
+				toValue: 1,
+				duration: 350,
+				useNativeDriver: true
+			}).start(this.initTimer);
+			return { flipped: true };
 		});
 	}
 
 	initTimer() {
-		this.timer = setTimeout(this.flip, 2000);
+		this.timer = setTimeout(this.flipBack, 2000);
 	}
 
 	clearTimer() {
@@ -50,13 +63,13 @@ class ProfileImage extends Component {
 					dims={this.dims}
 					borderRadius={this.borderRadius}
 					visible={!this.state.flipped}
-					flip={this.flip} />
+					flip={this.flipToUpload} />
 				<Back 
 					anim={this.anim}
 					dims={this.dims}
 					borderRadius={this.borderRadius}
 					visible={this.state.flipped}
-					flip={this.flip}
+					flip={this.flipBack}
 					clearTimer={this.clearTimer} />
 			</View>
 		);
