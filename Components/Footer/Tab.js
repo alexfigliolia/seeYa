@@ -10,7 +10,7 @@ class Tab extends Component {
 	constructor(props) {
 	  super(props);
 		this.setActive = this.setActive.bind(this);
-		this.margin = this.props.footerHeight === 75 ? 20 : 0;
+		this.margin = this.props.footerHeight === 75 ? 20 : 2.5;
 	}
 
 	shouldComponentUpdate({ screen }) {
