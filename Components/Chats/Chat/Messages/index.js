@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import { KeyboardAvoidingView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Message from './Message';
 import Styles from './Styles';
@@ -44,9 +44,12 @@ class Messages extends Component {
   }
 
 	render() {
-		const { messages } = this.props;
+		const { messages, headerHeight } = this.props;
 		return (
-			<View style={Styles.container}>
+			<KeyboardAvoidingView 
+				style={Styles.container}
+				behavior='height'
+				keyboardVerticalOffset={headerHeight + 100}>
 				<FlatList
 					ref={c => this.list = c}
 	        data={messages}
@@ -57,15 +60,15 @@ class Messages extends Component {
 	        inverted={true}
 	        removeClippedSubviews={messages.length > 20}
 	        keyboardShouldPersistTaps='handled' />
-			</View>
+			</KeyboardAvoidingView>
 		);
 	}
 }
 
 const mSTP = ({ Chat, Dimensions }) => {
-	const { height } = Dimensions;
+	const { height, headerHeight } = Dimensions;
 	const { messages } = Chat;
-	return { messages, height };
+	return { messages, height, headerHeight };
 }
 
 export default connect(mSTP)(Messages);

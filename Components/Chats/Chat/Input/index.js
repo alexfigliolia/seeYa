@@ -49,8 +49,6 @@ class Input extends Component {
 	        placeholder='Message:'
 	        placeholderTextColor='#7C7F8A'
 	        autoCorrect={false}
-	        autoCompleteType='name'
-	        textContentType='name'
 	        multiline={true}
 	        numberOfLines={5}
 	        value={text}

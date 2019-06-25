@@ -7,10 +7,9 @@ import Styles from './Styles';
 
 class Chat extends Component {
 
-	shouldComponentUpdate({ chat: { id, user, image }}) {
+	shouldComponentUpdate({ chat: { user, image }}) {
 		const curProps = this.props;
-		if(id !== curProps.chat.id) return true;
-		else if(user !== curProps.chat.user) return true;
+		if(user !== curProps.chat.user) return true;
 		else if(image !== curProps.chat.image) return true;
 		return false;
 	}

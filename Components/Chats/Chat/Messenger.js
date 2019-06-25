@@ -11,17 +11,13 @@ class Messenger extends Component {
 	  this.state = { distance: 0 };
 		this.anim = new Animated.Value(0);
 		this.raiseUI = this.raiseUI.bind(this);
+    this.keyboardWillShow = this.keyboardWillShow.bind(this);
+    this.lowerUI = this.lowerUI.bind(this);
 	}
 
 	componentDidMount() {
-    this.keyboardWillShowListener = Keyboard.addListener(
-      'keyboardWillShow',
-      this.keyboardWillShow.bind(this),
-    );
-    this.keyboardWillHideListener = Keyboard.addListener(
-      'keyboardWillHide',
-      this.lowerUI.bind(this),
-    );
+    Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    Keyboard.addListener('keyboardWillHide', this.lowerUI);
   }
 
   shouldComponentUpdate(nextProps, { distance }) {
@@ -29,8 +25,8 @@ class Messenger extends Component {
   }
 
   componentWillUnmount() {
-    this.keyboardWillShowListener.remove();
-    this.keyboardWillHideListener.remove();
+    Keyboard.removeListener('keyboardWillShow');
+    Keyboard.removeListener('keyboardWillHide');
   }
 
   keyboardWillShow(e) {
