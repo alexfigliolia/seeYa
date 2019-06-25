@@ -81,6 +81,8 @@ export default StyleSheet.create({
 		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	fillText: {
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		fontWeight: '300'

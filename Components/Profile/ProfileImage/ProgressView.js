@@ -39,15 +39,14 @@ export default class ProgressView extends Component {
 				  onAnimationComplete={this.finish}>
 				  {
 				  	children => (
-				  		<LinearTextGradient 
-					  		style={[
-					  			Styles.fill, 
-					  			{ fontSize: this.fontSize }
-					  		]}
+				  		<View style={Styles.fill}>
+				  			<LinearTextGradient 
+					  		style={[Styles.fillText, { fontSize: this.fontSize }]}
 					  		colors={colors}
 								locations={[0, 1]}
 							  start={{ x: 0, y: 0 }}
 							  end={{ x: 0, y: 1 }}>{fill}%</LinearTextGradient>
+				  		</View>
 				  	)
 				  }
 				</AnimatedCircularProgress>

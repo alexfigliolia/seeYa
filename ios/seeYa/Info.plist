@@ -37,6 +37,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Connect to bluetooth devices</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Connect with your contacts</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To select a profile photo</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>For locating you and your nearest friends</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -48,7 +54,13 @@
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>Use voice recognition to instant message your friends</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Change profile images</string>
+    <string>To select a profile photo</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+	<string>to select a profile photo</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Find music you love</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Detect when you're on the go</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

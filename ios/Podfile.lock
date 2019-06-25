@@ -94,6 +94,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - ReactNativePermissions (1.1.1):
+    - React
   - RNSVG (9.5.1):
     - React
   - RNTextGradientView (0.1.6):
@@ -124,6 +126,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNTextGradientView (from `../node_modules/react-native-text-gradient`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
@@ -153,6 +156,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-voice:
     :path: "../node_modules/react-native-voice"
+  ReactNativePermissions:
+    :path: "../node_modules/react-native-permissions"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNTextGradientView:
@@ -173,10 +178,11 @@ SPEC CHECKSUMS:
   react-native-google-maps: 77af0fa3b5325c72c107d054677911f6e6170496
   react-native-maps: bb480348a3fe1e5a811fed1ba3387b329161c5cc
   react-native-voice: 313189be1fe80899150cf5a7070cb634920ac74e
+  ReactNativePermissions: 9f2d9c45c98800795e6c2ed330e25d11a66a8169
   RNSVG: 4834be1d644eb77f0e3f6de851881b83758a3124
   RNTextGradientView: a0ddcc2cb5a2b5de13652a0059a17abd8c5acd87
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: a6672300b6dc46f65d7c3b91043e9679dc950e07
+PODFILE CHECKSUM: 5507a962ba5bf8750a847954e6d79ac72fe2bcad
 
 COCOAPODS: 1.6.0.beta.1

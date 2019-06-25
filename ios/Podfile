@@ -27,7 +27,6 @@ target 'seeYa' do
   pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
   pod 'glog', :podspec => "#{rn_path}/third-party-podspecs/glog.podspec"
   pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
-
   pod 'react-native-maps', path: rn_maps_path
   pod 'react-native-google-maps', path: rn_maps_path
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
@@ -36,8 +35,8 @@ target 'seeYa' do
   pod 'Google-Maps-iOS-Utils'
   pod 'react-native-voice', :path => '../node_modules/react-native-voice'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
   pod 'RNTextGradientView', :path => '../node_modules/react-native-text-gradient'
+  pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
 
 end
 

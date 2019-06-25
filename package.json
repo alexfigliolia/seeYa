@@ -16,6 +16,7 @@
     "react-native-interactable": "https://github.com/alexfigliolia/react-native-interactable.git",
     "react-native-linear-gradient": "^2.5.4",
     "react-native-maps": "^0.24.2",
+    "react-native-permissions": "^1.1.1",
     "react-native-status-bar-height": "^2.3.1",
     "react-native-svg": "^9.5.1",
     "react-native-text-gradient": "^0.1.6",

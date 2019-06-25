@@ -3,6 +3,7 @@ import { Animated, View, Image, Text, TouchableWithoutFeedback, ImagePickerIOS }
 import { connect } from 'react-redux';
 import { beginUpload, setImgUrl } from '../../../Actions/User';
 import Axios from 'axios';
+import Permissions from 'react-native-permissions';
 import ProgressView from './ProgressView';
 import UploadConfig from './UploadConfig';
 import Styles from '../Styles';
@@ -16,8 +17,15 @@ class Back extends Component {
 	  super(props);
 	  this.state = { uploading: false, progress: 0 };
 	  this.cameraDims = this.props.dims * 0.4;
+	  this.hasPhotoPermission = false;
 		this.selectImage = this.selectImage.bind(this);
 		this.finish = this.finish.bind(this);
+	}
+
+	componentDidMount() {
+		Permissions.check('photo', { type: 'always' }).then(response => {
+		  this.hasPhotoPermission = response === 'authorized' || response === 'restricted';
+		});
 	}
 
 	shouldComponentUpdate({ visible }, { uploading, progress }) {
@@ -34,15 +42,25 @@ class Back extends Component {
 		return Camera;
 	}
 
+	getPermission() {
+		Permissions.request('photo', { type: 'always' }).then(response => {
+	  	this.hasPhotoPermission = response === 'authorized' || response === 'restricted';
+	  	if(this.hasPhotoPermission) this.selectImage();
+	  	else this.props.flip();
+		});
+	}
+
 	selectImage() {
 		const { clearTimer, beginUpload, flip } = this.props;
 		clearTimer();
-		if(!this.props.uploading) {
+		if(!this.props.uploading && this.hasPhotoPermission) {
 			ImagePickerIOS.openSelectDialog({}, img => {
 				beginUpload({ uri: img });
 				this.setState({ uploading: true, progress: 0 });
 	 			this.upload(img);
 	    }, error => flip());
+		} else {
+			this.getPermission();
 		}
 	}
 
