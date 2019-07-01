@@ -80,6 +80,10 @@ export default (state = initialState, action) => {
 			return Object.assign({}, state, { speechError: action.error });
 		case 'CLEAR_VOICE_DATA':
 			return Object.assign({}, state, { listening: false, speechError: '' });
+		case 'DELETE_CHAT':
+			return Object.assign({}, state, { 
+				conversations: state.conversations.filter(({ id }) => id !== action.id)
+			});
 		default:
 			return state;
 	}

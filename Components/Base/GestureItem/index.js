@@ -29,9 +29,17 @@ class GestureItem extends Component {
 	}
 
 	render() {
-		const { listItemWidth, gradientColors, children, onPress } = this.props;
+		const { 
+			style={},
+			listItemWidth, 
+			gradientColors, 
+			children, 
+			onPress, 
+			revealItem, 
+			revealItemPress 
+		} = this.props;
 		return (
-			<View style={{ position: 'relative' }}>
+			<Animated.View style={style}>
 				<Interactable.View
 					ref={c => this.item = c}
 				  horizontalOnly={true}
@@ -59,10 +67,16 @@ class GestureItem extends Component {
 						</RippleButton>
 					</Animated.View>
 				</Interactable.View>
-				<RevealItem 
-					anim={this.gesture}
-					colors={gradientColors} />
-			</View>
+				{
+					revealItem &&
+					<RevealItem 
+						anim={this.gesture}
+						colors={gradientColors}
+						onPress={revealItemPress}>
+						{ revealItem }
+					</RevealItem>
+				}
+			</Animated.View>
 		);
 	}
 }

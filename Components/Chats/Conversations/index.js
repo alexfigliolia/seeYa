@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Conversation from './Conversation';
+import NewChat from './NewChat';
 import Styles from '../Styles';
 import BaseStyles from '../../Base/Styles';
 
@@ -27,8 +28,8 @@ class Conversations extends Component {
 		);
 	}
 
-	keyExtractor({ name }, index) {
-		return `${name}-${index}`;
+	keyExtractor({ id }, index) {
+		return id.toString();
 	}
 
 	getItemLayout(data, index) {
@@ -51,7 +52,8 @@ class Conversations extends Component {
         initialNumToRender={this.initialNumToRender()}
         initialScrollIndex={0}
         removeClippedSubviews={conversations.length > 20}
-        keyboardShouldPersistTaps='handled' />
+        keyboardShouldPersistTaps='handled'
+        ListHeaderComponent={NewChat} />
 		);
 	}
 }

@@ -22,6 +22,10 @@ export const sendMessage = text => {
 	return { type: 'SEND_MESSAGE', text };
 }
 
-export const openChat = (index) => {
+export const openChat = index => {
 	return { type: 'OPEN_CHAT', index };
+}
+
+export const deleteChat = id => {
+	return { type: 'DELETE_CHAT', id };
 }

@@ -17,5 +17,5 @@ export default StyleSheet.create({
 	},
 	inner: {
 		borderRadius: 5,
-	}
+	},
 });
